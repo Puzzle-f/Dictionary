@@ -1,4 +1,4 @@
-package geekbrains.ru.translator.model.data
+package com.example.dictionary.model.data
 
 import com.google.gson.annotations.SerializedName
 

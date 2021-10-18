@@ -1,8 +1,8 @@
 package com.example.dictionary.model.retrofit
 
-import geekbrains.ru.translator.model.data.DataModel
-import geekbrains.ru.translator.model.datasource.DataSource
-import geekbrains.ru.translator.model.datasource.RetrofitImplementation
+import com.example.dictionary.model.data.DataModel
+import com.example.dictionary.model.datasource.DataSource
+import com.example.dictionary.model.datasource.RetrofitImplementation
 import io.reactivex.Observable
 
 // Для получения внешних данных мы будем использовать Retrofit

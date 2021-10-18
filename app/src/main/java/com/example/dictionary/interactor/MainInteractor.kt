@@ -1,21 +1,26 @@
-package geekbrains.ru.translator.view.main
+package com.example.dictionary.interactor
 
 import com.example.dictionary.AppState
+import com.example.dictionary.di.NAME_LOCAL
+import com.example.dictionary.di.NAME_REMOTE
 import com.example.dictionary.interactor.IInteractor
 import com.example.dictionary.model.IRepository
-import geekbrains.ru.translator.model.data.DataModel
+import com.example.dictionary.model.data.DataModel
 import io.reactivex.Observable
+import javax.inject.Inject
+import javax.inject.Named
 
-class MainInteractor(
-    private val remoteRepository: IRepository<List<DataModel>>,
-    private val localRepository: IRepository<List<DataModel>>
-) : IInteractor<AppState> {
+class MainInteractor @Inject constructor(
+    @Named(NAME_REMOTE) val repositoryRemote: IRepository<List<DataModel>>,
+    @Named(NAME_LOCAL) val repositoryLocal: IRepository<List<DataModel>>
+)
+    : IInteractor<AppState> {
 
     override fun getData(word: String, fromRemoteSource: Boolean): Observable<AppState> {
         return if (fromRemoteSource) {
-            remoteRepository.getData(word).map { AppState.Success(it) }
+            repositoryRemote.getData(word).map { AppState.Success(it) }
         } else {
-            localRepository.getData(word).map { AppState.Success(it) }
+            repositoryLocal.getData(word).map { AppState.Success(it) }
         }
     }
 }

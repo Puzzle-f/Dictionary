@@ -1,6 +1,6 @@
-package geekbrains.ru.translator.model.datasource
+package com.example.dictionary.model.datasource
 
-import geekbrains.ru.translator.model.data.DataModel
+import com.example.dictionary.model.data.DataModel
 import io.reactivex.Observable
 
 class RoomDataBaseImplementation : DataSource<List<DataModel>> {

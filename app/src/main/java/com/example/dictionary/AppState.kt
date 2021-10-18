@@ -1,6 +1,6 @@
 package com.example.dictionary
 
-import geekbrains.ru.translator.model.data.DataModel
+import com.example.dictionary.model.data.DataModel
 
 sealed class AppState {
 

@@ -1,8 +1,8 @@
 package com.example.dictionary.model.local
 
-import geekbrains.ru.translator.model.data.DataModel
-import geekbrains.ru.translator.model.datasource.DataSource
-import geekbrains.ru.translator.model.datasource.RoomDataBaseImplementation
+import com.example.dictionary.model.data.DataModel
+import com.example.dictionary.model.datasource.DataSource
+import com.example.dictionary.model.datasource.RoomDataBaseImplementation
 import io.reactivex.Observable
 
 

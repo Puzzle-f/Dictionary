@@ -1,12 +1,13 @@
 package com.example.dictionary.presenter
 
 import com.example.dictionary.AppState
+import com.example.dictionary.interactor.MainInteractor
 import com.example.dictionary.model.RepositoryImplementation
 import com.example.dictionary.model.local.DataSourceLocal
 import com.example.dictionary.model.retrofit.DataSourceRemote
+import com.example.dictionary.rx.SchedulerProvider
 import com.example.dictionary.view.IView
-import geekbrains.ru.translator.rx.SchedulerProvider
-import geekbrains.ru.translator.view.main.MainInteractor
+
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 

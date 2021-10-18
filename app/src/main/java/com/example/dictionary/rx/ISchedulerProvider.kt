@@ -1,5 +1,4 @@
-package geekbrains.ru.translator.rx
-
+package com.example.dictionary.rx
 import io.reactivex.Scheduler
 
 //In the sake of testing

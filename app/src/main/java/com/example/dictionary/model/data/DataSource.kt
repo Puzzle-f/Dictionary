@@ -1,4 +1,4 @@
-package geekbrains.ru.translator.model.datasource
+package com.example.dictionary.model.datasource
 
 import io.reactivex.Observable
 
