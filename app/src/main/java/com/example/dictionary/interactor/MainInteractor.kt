@@ -10,9 +10,9 @@ import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Named
 
-class MainInteractor @Inject constructor(
-    @Named(NAME_REMOTE) val repositoryRemote: IRepository<List<DataModel>>,
-    @Named(NAME_LOCAL) val repositoryLocal: IRepository<List<DataModel>>
+class MainInteractor (
+    private val repositoryRemote: IRepository<List<DataModel>>,
+    private val repositoryLocal: IRepository<List<DataModel>>
 )
     : IInteractor<AppState> {
 

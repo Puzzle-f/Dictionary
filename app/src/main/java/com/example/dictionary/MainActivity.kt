@@ -6,18 +6,15 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dictionary.adapter.MainAdapter
 import com.example.dictionary.databinding.ActivityMainBinding
+import com.example.dictionary.model.data.DataModel
 import com.example.dictionary.view.IView
 import com.example.dictionary.view.SearchDialogFragment
 import com.example.dictionary.viewModel.MainViewModel
-import dagger.android.AndroidInjection
-import com.example.dictionary.model.data.DataModel
-
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class MainActivity() : AppCompatActivity(), IView {
@@ -25,6 +22,8 @@ class MainActivity() : AppCompatActivity(), IView {
     private var vb: ActivityMainBinding? = null
 
     private var adapter: MainAdapter? = null // Адаптер для отображения списка
+
+    private val viewModel: MainViewModel by viewModel()
 
     // вариантов перевода
     // Обработка нажатия элемента списка
@@ -35,10 +34,12 @@ class MainActivity() : AppCompatActivity(), IView {
             }
         }
 
-    @Inject
-    internal lateinit var viewModelFactory: ViewModelProvider.Factory
+//    @Inject
+//    internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: MainViewModel
+//    lateinit var viewModel: MainViewModel
+
+
 //    by lazy {
 //        Создание модели, не использующей жизненный цикл активити. С помощью рефлексии.
 //        при данном варианте создания обязательно иметь дефолтный конструктор MainViewModel (или с инициилизированными данными в конструкторе)
@@ -52,12 +53,11 @@ class MainActivity() : AppCompatActivity(), IView {
     private val observer = Observer<AppState> { renderData(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+//        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb?.root)
-        viewModel = viewModelFactory.create(MainViewModel::class.java)
-
+//        viewModel = viewModelFactory.create(MainViewModel::class.java)
 
 
         search_fab.setOnClickListener {
@@ -113,6 +113,16 @@ class MainActivity() : AppCompatActivity(), IView {
             }
         }
     }
+
+//    private fun iniViewModel() {
+//        check(main_activity_recyclerview.adapter == null) { "The ViewModel should be initialised first" }
+//        // Теперь ViewModel инициализируется через функцию by viewModel()
+//        // Это функция, предоставляемая Koin из коробки
+//        var model: MainViewModel by viewModel()
+//        model = viewModel
+//        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
+//    }
+
 
     private fun showErrorScreen(error: String?) {
         showViewError()

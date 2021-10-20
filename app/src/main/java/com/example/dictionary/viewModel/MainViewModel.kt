@@ -5,7 +5,7 @@ import com.example.dictionary.interactor.MainInteractor
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class MainViewModel (
     private val interactor: MainInteractor
 ) : BaseViewModel<AppState>() {
     // В этой переменной хранится последнее состояние Activity
