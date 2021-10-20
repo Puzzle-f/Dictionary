@@ -34,22 +34,6 @@ class MainActivity() : AppCompatActivity(), IView {
             }
         }
 
-//    @Inject
-//    internal lateinit var viewModelFactory: ViewModelProvider.Factory
-
-//    lateinit var viewModel: MainViewModel
-
-
-//    by lazy {
-//        Создание модели, не использующей жизненный цикл активити. С помощью рефлексии.
-//        при данном варианте создания обязательно иметь дефолтный конструктор MainViewModel (или с инициилизированными данными в конструкторе)
-//        ViewModelProvider.NewInstanceFactory().create(MainViewModel::class.java)
-
-//        вариант создания MainViewModel с использованием жизненного цикла
-//        ViewModelProvider обращается к viewModelFactory, который предоставляет объект MainViewModel
-//        ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-//    }
-
     private val observer = Observer<AppState> { renderData(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +42,6 @@ class MainActivity() : AppCompatActivity(), IView {
         vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb?.root)
 //        viewModel = viewModelFactory.create(MainViewModel::class.java)
-
 
         search_fab.setOnClickListener {
             val searchDialogFragment = SearchDialogFragment.newInstance()
@@ -113,16 +96,6 @@ class MainActivity() : AppCompatActivity(), IView {
             }
         }
     }
-
-//    private fun iniViewModel() {
-//        check(main_activity_recyclerview.adapter == null) { "The ViewModel should be initialised first" }
-//        // Теперь ViewModel инициализируется через функцию by viewModel()
-//        // Это функция, предоставляемая Koin из коробки
-//        var model: MainViewModel by viewModel()
-//        model = viewModel
-//        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
-//    }
-
 
     private fun showErrorScreen(error: String?) {
         showViewError()
