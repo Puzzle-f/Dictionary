@@ -10,17 +10,38 @@ import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Named
 
-class MainInteractor (
+//class MainInteractor (
+//    private val repositoryRemote: IRepository<List<DataModel>>,
+//    private val repositoryLocal: IRepository<List<DataModel>>
+//)
+//    : IInteractor<AppState> {
+//
+//    override fun getData(word: String, fromRemoteSource: Boolean): Observable<AppState> {
+//        return if (fromRemoteSource) {
+//            repositoryRemote.getData(word).map { AppState.Success(it) }
+//        } else {
+//            repositoryLocal.getData(word).map { AppState.Success(it) }
+//        }
+//    }
+//}
+
+class MainInteractor(
     private val repositoryRemote: IRepository<List<DataModel>>,
     private val repositoryLocal: IRepository<List<DataModel>>
-)
-    : IInteractor<AppState> {
-
-    override fun getData(word: String, fromRemoteSource: Boolean): Observable<AppState> {
-        return if (fromRemoteSource) {
-            repositoryRemote.getData(word).map { AppState.Success(it) }
-        } else {
-            repositoryLocal.getData(word).map { AppState.Success(it) }
-        }
+) : IInteractor<AppState> {
+    // Добавляем suspend
+    override suspend fun getData(word: String, fromRemoteSource: Boolean):
+            AppState {
+        return AppState.Success(
+            if (fromRemoteSource) {
+                repositoryRemote
+            } else {
+                repositoryLocal
+            }.getData(word)
+        )
+//        if (fromRemoteSource){
+//            return AppState.Success(repositoryRemote)
+//        }
     }
 }
+
